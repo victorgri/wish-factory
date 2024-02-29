@@ -328,7 +328,11 @@ export const Main = () => {
           <div className="donation__cards">
             <div className="donation__card">
               <h3 className="donation__card--title">To-have</h3>
-              <img src="./img/To-have.svg" alt="to have" />
+              <img
+                className="donation__card--img"
+                src="./img/To-have.svg"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To have a phone, a dog. This is the most frequent request during
                 the great war in Ukraine. Children in shelters and elderly
@@ -337,7 +341,11 @@ export const Main = () => {
             </div>
             <div className="donation__card">
               <h3 className="donation__card--title">To-meet</h3>
-              <img src="./img/To-meet.svg" alt="to have" />
+              <img
+                className="donation__card--img"
+                src="./img/To-meet.svg"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To meet celebrities, Youtuber, politician,s or a singer. Other
                 people we are inspired by give a lot of support and strength.
@@ -345,7 +353,11 @@ export const Main = () => {
             </div>
             <div className="donation__card">
               <h3 className="donation__card--title">To-go</h3>
-              <img src="./img/To-go.svg" alt="to have" />
+              <img
+                className="donation__card--img"
+                src="./img/To-go.svg"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To go to a sports event, park, zoo, or concert. Children and
                 elderly people want to visit many places, but they do not always
@@ -354,7 +366,11 @@ export const Main = () => {
             </div>
             <div className="donation__card">
               <h3 className="donation__card--title">To-be</h3>
-              <img src="./img/To-be.svg" alt="to have" />
+              <img
+                className="donation__card--img"
+                src="./img/To-be.svg"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To be a policeman, doctor, chef and so on. Most often, this
                 activity interests children, because they want to learn about
