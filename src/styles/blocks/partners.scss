@@ -1,0 +1,40 @@
+.partners {
+  width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  &__title {
+    text-align: center;
+    color: #212529;
+    font-family: e-Ukraine;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    margin-bottom: 60px;
+  }
+
+  &__slide {
+    display: flex;
+    overflow: hidden;
+    padding: 33px 0;
+  }
+
+  &__logos {
+    display: flex;
+    animation: 5s move infinite linear;
+ 
+    &--item {
+      margin: 0 100px;
+    }
+  }
+}
+
+@keyframes move {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}

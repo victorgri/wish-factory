@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  gap: 195px;
+  justify-content: center;
+  padding: 40px 0;
+  background-color: #F2F4FF;
+
+  &__item {
+    &--title {
+      color: #212529;
+      font-family: e-Ukraine;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+
+    &--desc {
+      width: 318px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      &-link {
+        display: flex;
+       color: var(--Gray-80, #343A40);
+      font-family: e-Ukraine;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 150%; /* 21px */
+      text-decoration-line: underline;
+      }
+    }
+  }
+}
