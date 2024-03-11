@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import App from './App';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  base: "/wish-factory/",
-  plugins: [react()],
-  build: {
-    outDir: 'build' // указываем каталог для сборки
-  }
-});
+ReactDOM.render(
+  <Router basename="/wish-factory">
+    <Route component={App} />
+  </Router>,
+  document.getElementById('root')
+);
