@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import App from './App';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-ReactDOM.render(
-  <Router basename="/wish-factory">
-    <Route component={App} />
-  </Router>,
-  document.getElementById('root')
-);
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: "/wish-factory/",
+  plugins: [react()],
+  server: {
+    host: '0.0.0.0', // указываем хост
+    port: 8080 // указываем порт
+  }
+});
