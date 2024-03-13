@@ -10,10 +10,21 @@
     margin-bottom: 32px;
   }
 
+  &__error {
+    font-family: e-Ukraine;
+    text-align: center;
+    color: red;
+    font-size: 40px;
+  }
+
   &__sort {
-    display: flex;
-    gap: 24px;
+    
     margin-bottom: 32px;
+
+    &--inner {
+      display: flex;
+      gap: 24px;
+    }
 
     &--item {
       cursor: pointer;
@@ -37,16 +48,21 @@
 
   &__filter {
     margin-bottom: 120px;
-    display: flex;
-    justify-content: space-between;
+    
     height: 110px;
+
+    &--inner {
+      display: flex;
+      justify-content: space-between;
+    }
 
     &--item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 260px;
       &-reg {
-        width: 318px;
+        width: 260px;
         font-family: e-Ukraine;
         font-weight: 300;
         font-size: 16px;
@@ -113,7 +129,6 @@
     }
     }
   &__cards {
-    width: 1344px;
     gap: 24px;
     display: flex;
     flex-direction: row;
@@ -123,7 +138,7 @@
   }
   &__card {
     position: relative;
-    width: 318px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -131,8 +146,8 @@
     padding: 0 24px 24px;
 
     &--img {
-      width: 318px;
-      height: 261px;
+      width: 100%;
+      height: auto;
       border-radius: 40px 40px 0px 0px;
     }
 

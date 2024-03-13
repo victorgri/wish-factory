@@ -8,12 +8,18 @@ type Props = {
 export const FqA: React.FC<Props> = ({ title, text }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="questions__inner">
-      <h1 className="questions__title" onClick={() => setOpen(!open)}>
-        {title}
-        {open ? <img src="./img/open.svg"/> : <img src="./img/arrowdown.svg"/>}
-      </h1>
-      {open && <p className="questions__text">{text}</p>}
+    <div className="container">
+      <div className="questions__inner">
+        <h1 className="questions__title" onClick={() => setOpen(!open)}>
+          {title}
+          {open ? (
+            <img src="./img/open.svg" />
+          ) : (
+            <img src="./img/arrowdown.svg" />
+          )}
+        </h1>
+        {open && <p className="questions__text">{text}</p>}
+      </div>
     </div>
   );
 }

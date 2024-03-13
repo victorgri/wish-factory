@@ -5,6 +5,7 @@ import {  Fill } from "../../types/WishTypes";
 import { ModalForm } from "../Modal/Modal";
 
 import './Wishes.scss';
+import { Loader } from "../Loader";
 
 
 type Props = {
@@ -22,9 +23,14 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
   const [unFulfilled, setUnFulfilled] = useState<Wish[]>([]);
   const [currency, setCurrency] = useState('');
   const [min, setMin] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setVisible([...wishes]);
+    setLoading(true);
+    setTimeout(() => {
+      setVisible([...wishes]);
+      setLoading(false);
+    }, 1000);
   }, [])
 
   useEffect(() => {
@@ -82,142 +88,170 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
 
   return (
     <div className="wishes">
-      <h2 className="wishes__title">Wishes</h2>
+      <div className="container">
+        <h2 className="wishes__title">Wishes</h2>
+      </div>
+
       <div className="wishes__sort">
-        <div className="wishes__sort--item" onClick={filterUnFUllFill}>
-          <h4 className="wishes__sort--item-title">Unfulfilled </h4>
-          <span className="wishes__sort--item-count">{unFulfilled.length}</span>
-        </div>
-        <div className="wishes__sort--item" onClick={filterFullFill}>
-          <h4 className="wishes__sort--item-title">Fulfilled </h4>
-          <span className="wishes__sort--item-count">{fulfilled.length}</span>
-        </div>
-        <div
-          className="wishes__sort--item"
-          onClick={() => setVisible([...wishes])}
-        >
-          <h4 className="wishes__sort--item-title">All</h4>
-          <span className="wishes__sort--item-count">{wishes.length}</span>
+        <div className="container">
+          <div className="wishes__sort--inner">
+            <div className="wishes__sort--item" onClick={filterUnFUllFill}>
+              <h4 className="wishes__sort--item-title">Unfulfilled </h4>
+              <span className="wishes__sort--item-count">
+                {unFulfilled.length}
+              </span>
+            </div>
+            <div className="wishes__sort--item" onClick={filterFullFill}>
+              <h4 className="wishes__sort--item-title">Fulfilled </h4>
+              <span className="wishes__sort--item-count">
+                {fulfilled.length}
+              </span>
+            </div>
+            <div
+              className="wishes__sort--item"
+              onClick={() => setVisible([...wishes])}
+            >
+              <h4 className="wishes__sort--item-title">All</h4>
+              <span className="wishes__sort--item-count">{wishes.length}</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="wishes__filter">
-        <div className="wishes__filter--item">
-          <div
-            className="wishes__filter--item-top"
-            onClick={() => setShowType(!showType)}
-          >
-            <span className="wishes__filter--item-title">Dream type</span>
-            <img src="./img/arrowdown.svg" alt="arrowdown" />
-          </div>
+        <div className="container">
+          <div className="wishes__filter--inner">
+            <div className="wishes__filter--item">
+              <div
+                className="wishes__filter--item-top"
+                onClick={() => setShowType(!showType)}
+              >
+                <span className="wishes__filter--item-title">Dream type</span>
+                <img src="./img/arrowdown.svg" alt="arrowdown" />
+              </div>
 
-          {showType ? (
-            <div className="wishes__filter--item-bottom">
-              <p className="wishes__filter--item-opt" onClick={handleToGo}>
-                TO_GO
-              </p>
-              <p className="wishes__filter--item-opt" onClick={handleToMeet}>
-                TO_MEET
-              </p>
-              <p className="wishes__filter--item-opt" onClick={handleToBe}>
-                TO_BE
-              </p>
-              <p className="wishes__filter--item-opt" onClick={handleToHave}>
-                TO_HAVE
-              </p>
+              {showType ? (
+                <div className="wishes__filter--item-bottom">
+                  <p className="wishes__filter--item-opt" onClick={handleToGo}>
+                    TO_GO
+                  </p>
+                  <p
+                    className="wishes__filter--item-opt"
+                    onClick={handleToMeet}
+                  >
+                    TO_MEET
+                  </p>
+                  <p className="wishes__filter--item-opt" onClick={handleToBe}>
+                    TO_BE
+                  </p>
+                  <p
+                    className="wishes__filter--item-opt"
+                    onClick={handleToHave}
+                  >
+                    TO_HAVE
+                  </p>
+                </div>
+              ) : null}
             </div>
-          ) : null}
-        </div>
-        <div className="wishes__filter--item">
-          <div
-            className="wishes__filter--item-top"
-            onClick={() => setShowRegion(!showRegion)}
-          >
-            <span className="wishes__filter--item-title">Region</span>
-            <img src="./img/arrowdown.svg" alt="arrowdown" />
-          </div>
-          {showRegion && (
-            <input
-              className="wishes__filter--item-reg"
-              type="text"
-              placeholder="Start typing to find city"
-              onChange={(e) => filteredByRegion(e)}
-            />
-          )}
-        </div>
-        <div className="wishes__filter--item">
-          <div
-            className="wishes__filter--item-top"
-            onClick={() => setShowCurrency(!showCurrency)}
-          >
-            <span className="wishes__filter--item-title">Currency</span>
-            <img src="./img/arrowdown.svg" alt="arrowdown" />
-          </div>
-          {showCurrency && (
-            <div className="wishes__filter--item-currency">
+            <div className="wishes__filter--item">
               <div
-                className="wishes__filter--item-opt"
-                onClick={() => {
-                  setCurrency("UAH");
-                  setVisible(
-                    [...wishes].filter((w) => w.currency === currency)
-                  );
-                  setShowCurrency(!showCurrency);
-                }}
+                className="wishes__filter--item-top"
+                onClick={() => setShowRegion(!showRegion)}
               >
-                UAH
+                <span className="wishes__filter--item-title">Region</span>
+                <img src="./img/arrowdown.svg" alt="arrowdown" />
               </div>
+              {showRegion && (
+                <input
+                  className="wishes__filter--item-reg"
+                  type="text"
+                  placeholder="Start typing to find city"
+                  onChange={(e) => filteredByRegion(e)}
+                />
+              )}
+            </div>
+            <div className="wishes__filter--item">
               <div
-                className="wishes__filter--item-opt"
-                onClick={() => {
-                  setCurrency("USD");
-                  setVisible(
-                    [...wishes].filter((w) => w.currency === currency)
-                  );
-                  setShowCurrency(!showCurrency);
-                }}
+                className="wishes__filter--item-top"
+                onClick={() => setShowCurrency(!showCurrency)}
               >
-                USD
+                <span className="wishes__filter--item-title">Currency</span>
+                <img src="./img/arrowdown.svg" alt="arrowdown" />
+              </div>
+              {showCurrency && (
+                <div className="wishes__filter--item-currency">
+                  <div
+                    className="wishes__filter--item-opt"
+                    onClick={() => {
+                      setCurrency("UAH");
+                      setVisible(
+                        [...wishes].filter((w) => w.currency === currency)
+                      );
+                      setShowCurrency(!showCurrency);
+                    }}
+                  >
+                    UAH
+                  </div>
+                  <div
+                    className="wishes__filter--item-opt"
+                    onClick={() => {
+                      setCurrency("USD");
+                      setVisible(
+                        [...wishes].filter((w) => w.currency === currency)
+                      );
+                      setShowCurrency(!showCurrency);
+                    }}
+                  >
+                    USD
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="wishes__filter--item wishes__filter--item-budget">
+              <div className="wishes__filter--item-top">
+                <span className="wishes__filter--item-title">Budget</span>
+              </div>
+              <input
+                type="range"
+                min={1}
+                max={100000}
+                onChange={handleBudget}
+              />
+              <div className="wishes__filter--item-budbot">
+                <div className="wishes__filter--item-minmax">{`${min}-`}</div>-
+                <div className="wishes__filter--item-minmax">{"100000-"}</div>
               </div>
             </div>
-          )}
-        </div>
-        <div className="wishes__filter--item wishes__filter--item-budget">
-          <div className="wishes__filter--item-top">
-            <span className="wishes__filter--item-title">Budget</span>
-          </div>
-          <input
-            type="range"
-            min={1}
-            max={100000}
-            onChange={handleBudget}
-          />
-          <div className="wishes__filter--item-budbot">
-            <div className="wishes__filter--item-minmax">{`${min}-`}</div>-
-            <div className="wishes__filter--item-minmax">{"100000-"}</div>
           </div>
         </div>
       </div>
 
       <div className="wishes__cards cards">
-        {visible.map((wish) => (
-          <div className="wishes__card" key={wish.id}>
-            <img className="wishes__card--img" src={wish.attachment} />
-            <h4 className="wishes__card--title">{wish.title}</h4>
-            <ul className="wishes__card--desc">
-              <li className="wishes__card--desc-item">{wish.city}</li>
-              <li className="wishes__card--desc-item">{wish.user_age}</li>
-            </ul>
+        {loading && <Loader />}
+        {!loading &&
+          visible.length > 0 &&
+          visible.map((wish) => (
+            <div className="wishes__card" key={wish.id}>
+              <img className="wishes__card--img" src={wish.attachment} />
+              <h4 className="wishes__card--title">{wish.title}</h4>
+              <ul className="wishes__card--desc">
+                <li className="wishes__card--desc-item">{wish.city}</li>
+                <li className="wishes__card--desc-item">{wish.user_age}</li>
+              </ul>
 
-            {wish.is_activated && (
-              <div className="wishes__card--reserve">Reserved for embody</div>
-            )}
+              {wish.is_activated && (
+                <div className="wishes__card--reserve">Reserved for embody</div>
+              )}
 
-            <button className="wishes__card--btn" onClick={handleShow}>
-              Embody
-            </button>
-          </div>
-        ))}
+              <button className="wishes__card--btn" onClick={handleShow}>
+                Embody
+              </button>
+            </div>
+          ))}
+
+        {!loading && visible.length === 0 && (
+          <p className="wishes__error">There are no wishes yet</p>
+        )}
       </div>
       <ModalForm setShow={setShow} show={show} />
     </div>
