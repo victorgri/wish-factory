@@ -184,6 +184,12 @@
       border-radius: 100px;
       background:#4E51FF;
       margin-bottom: 150px;
+      border: none;
+      transition-duration: .5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }

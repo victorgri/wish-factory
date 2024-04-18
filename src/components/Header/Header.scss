@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 48px 45px;
+  padding: 20px 48px 45px;
 
   &__nav {
     display: flex;
@@ -17,6 +17,31 @@
       font-weight: 400;
       line-height: 150%;
       color: #343A40;
+      position: relative;
+
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #1E3C8E;
+        left: 50%;
+        top: 25px;
+        transform: translateX(-50%);
+        transition: all;
+        transition-duration: .5s;
+        transition-timing-function: linear;
+
+      }
+
+      &:hover {
+        color: #1E3C8E;
+        
+        &::after {
+          width: 100%;
+        }
+      }
     }
   }
 }

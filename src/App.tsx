@@ -23,8 +23,9 @@ function App() {
     setIsLoaded(false);
     fetch("https://wish-factory.onrender.com/api/dream/dreams/")
       .then((res) => res.json())
-      .then(wishesServer => {
+      .then((wishesServer: Wish[]) => {
         setWishes(wishesServer)
+        setVisible(wishesServer)
       });
     setIsLoaded(true)
   },

@@ -1,4 +1,7 @@
 .wishes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 150px;
   &__title {
     color:#212529;
@@ -75,7 +78,7 @@
       &-top {
         width: 318px;
         display: flex;
-        justify-content: space-between;
+        gap: 30px;
         cursor: pointer;
       }
 
@@ -87,7 +90,14 @@
         color: #5D6469;
       }
 
-
+      &-range {
+        width: 302px;
+        height: 2px;
+        border: 1px solid #ADB5BD;
+        border-radius: 4px;
+        margin: 16px 0;
+        outline: none;
+      }
 
       &-bottom {
         margin-top: 20px;
@@ -129,21 +139,19 @@
     }
     }
   &__cards {
-    gap: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
   &__card {
     position: relative;
     width: 260px;
     display: flex;
     flex-direction: column;
+    // align-items: center;
     gap: 24px;
     height: 574px;
-    padding: 0 24px 24px;
+
 
     &--img {
       width: 100%;
@@ -190,7 +198,7 @@
       padding: 15px 0 16px;
       border-radius: 100px;
       background-color: #4e1ff4;
-      width: 270px;
+      width: 100%;
     }
 
     &--reserve {

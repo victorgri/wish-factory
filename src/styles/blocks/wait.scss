@@ -72,6 +72,11 @@
     width: 1116px;
     border-radius: 100px;
     background-color: #4E51FF;
+    transition-duration: .5s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 

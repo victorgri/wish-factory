@@ -1,6 +1,7 @@
 import { Carousel } from "react-bootstrap";
 import { FqA } from "../FqA/FqA";
-import './Main.scss'
+import "./Main.scss";
+import '../../styles/blocks/container.scss'
 import { Link } from "react-router-dom";
 
 export const Main = () => {
@@ -40,7 +41,7 @@ export const Main = () => {
         </div>
       </section>
       <section className="fond">
-        <div className="container">
+        <div className="wrapper">
           <h2 className="fond__title">Our fond </h2>
           <img className="fond__subimg" src="./img/Heart.svg" alt="heart" />
 
@@ -318,7 +319,7 @@ export const Main = () => {
         </Link>
       </section>
       <section className="donation">
-        <div className="container">
+        <div className="wrapper">
           <h1 className="donation__title">What do we do with your donation</h1>
           <p className="donation__desc">
             We use most of your donations to help children and the elderly to
@@ -328,7 +329,11 @@ export const Main = () => {
           <div className="donation__cards">
             <div className="donation__card">
               <h3 className="donation__card--title">To-have</h3>
-              <img src="./img/To-have.svg" className="donation__card--img" alt="to have" />
+              <img
+                src="./img/To-have.svg"
+                className="donation__card--img"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To have a phone, a dog. This is the most frequent request during
                 the great war in Ukraine. Children in shelters and elderly
@@ -337,7 +342,11 @@ export const Main = () => {
             </div>
             <div className="donation__card">
               <h3 className="donation__card--title">To-meet</h3>
-              <img src="./img/To-meet.svg" className="donation__card--img" alt="to have" />
+              <img
+                src="./img/To-meet.svg"
+                className="donation__card--img"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To meet celebrities, Youtuber, politician,s or a singer. Other
                 people we are inspired by give a lot of support and strength.
@@ -345,7 +354,11 @@ export const Main = () => {
             </div>
             <div className="donation__card">
               <h3 className="donation__card--title">To-go</h3>
-              <img src="./img/To-go.svg" className="donation__card--img" alt="to have" />
+              <img
+                src="./img/To-go.svg"
+                className="donation__card--img"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To go to a sports event, park, zoo, or concert. Children and
                 elderly people want to visit many places, but they do not always
@@ -354,7 +367,11 @@ export const Main = () => {
             </div>
             <div className="donation__card">
               <h3 className="donation__card--title">To-be</h3>
-              <img src="./img/To-be.svg" className="donation__card--img" alt="to have" />
+              <img
+                src="./img/To-be.svg"
+                className="donation__card--img"
+                alt="to have"
+              />
               <p className="donation__card--desc">
                 To be a policeman, doctor, chef and so on. Most often, this
                 activity interests children, because they want to learn about
@@ -413,4 +430,4 @@ A decision on your request may take from 2 working days to a month, depending on
       </section>
     </div>
   );
-}
+};

@@ -58,36 +58,49 @@ export const About = () => {
       </section>
       <section className="about__botttom">
         <div className="about__bottom--top">
-          <h2 className="about__bottom--title">Our team</h2>
-          <img src="./img/Heart.svg" alt="heart" />
+          <div className="container">
+            <h2 className="about__bottom--title">Our team</h2>
+            <img src="./img/Heart.svg" alt="heart" />
+          </div>
         </div>
         <div className="about__bottom--bottom">
           <div className="about__bottom--wrapper">
-            <div className="about__bottom--blocks">
-              <div className="about__bottom--block">
-                <h2 className="about__bottom--block-title">Kyiv</h2>
-                <span className="about__bottom--block-text">Headquarters</span>
+            <div className="container">
+              <div className="about__bottom--blocks">
+                <div className="about__bottom--block">
+                  <h2 className="about__bottom--block-title">Kyiv</h2>
+                  <span className="about__bottom--block-text">
+                    Headquarters
+                  </span>
+                </div>
+                <div className="about__bottom--block">
+                  <h2 className="about__bottom--block-title">2022</h2>
+                  <span className="about__bottom--block-text">
+                    Year of establishment
+                  </span>
+                </div>
+                <div className="about__bottom--block">
+                  <h2 className="about__bottom--block-title">60+</h2>
+                  <span className="about__bottom--block-text">Volunteers</span>
+                </div>
               </div>
-              <div className="about__bottom--block">
-                <h2 className="about__bottom--block-title">2022</h2>
-                <span className="about__bottom--block-text">
-                  Year of establishment
-                </span>
-              </div>
-              <div className="about__bottom--block">
-                <h2 className="about__bottom--block-title">60+</h2>
-                <span className="about__bottom--block-text">Volunteers</span>
-              </div>
+              <article className="about__bottom--article">
+                More than 60 volunteers and employees of the foundation work
+                every day so that every contribution of yours turns into
+                valuable help for the most vulnerable categories of the
+                population. Together, we can create a more compassionate and
+                inclusive society for all.
+              </article>
             </div>
-            <article className="about__bottom--article">
-              More than 60 volunteers and employees of the foundation work every
-              day so that every contribution of yours turns into valuable help
-              for the most vulnerable categories of the population. Together, we
-              can create a more compassionate and inclusive society for all.
-            </article>
           </div>
         </div>
-        <img src="./img/Our team.jpg" alt="photo" className="about__bottom--photo" />
+        <div className="container">
+          <img
+            src="./img/Our team.jpg"
+            alt="photo"
+            className="about__bottom--photo"
+          />
+        </div>
       </section>
     </div>
   );

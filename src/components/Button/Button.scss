@@ -28,5 +28,10 @@
       font-weight: 700;
       line-height: 150%;
       margin: 0;
+      transition-duration: .5s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
   }
 }

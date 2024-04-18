@@ -1,9 +1,9 @@
-import './Footer.scss';
+import "./Footer.scss";
 
 export const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container">
+      <div className="wrapper">
         <div className="footer__inner">
           <div className="footer__item">
             <h3 className="footer__item--title">Address</h3>
@@ -54,4 +54,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-}
+};

@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Wish } from "../../types/Wish";
-import {  Fill } from "../../types/WishTypes";
+import { Fill } from "../../types/WishTypes";
 import { ModalForm } from "../Modal/Modal";
 
-import './Wishes.scss';
+import "./Wishes.scss";
 import { Loader } from "../Loader";
-
 
 type Props = {
   wishes: Wish[];
@@ -14,38 +13,38 @@ type Props = {
   setVisible: React.Dispatch<React.SetStateAction<Wish[]>>;
 };
 
-export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
+export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible }) => {
   const [show, setShow] = useState(false);
   const [showType, setShowType] = useState(false);
   const [showRegion, setShowRegion] = useState(false);
   const [showCurrency, setShowCurrency] = useState(false);
   const [fulfilled, setFulfilled] = useState<Wish[]>([]);
   const [unFulfilled, setUnFulfilled] = useState<Wish[]>([]);
-  const [currency, setCurrency] = useState('');
+  const [currency, setCurrency] = useState("");
   const [min, setMin] = useState(1);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(() => {
-      setVisible([...wishes]);
-      setLoading(false);
-    }, 1000);
-  }, [])
+
+    fetch("https://wish-factory.onrender.com/api/dream/dreams/")
+      .then((res) => res.json())
+      .then((wishesServer: Wish[]) => {
+        setVisible(wishesServer);
+      });
+    setLoading(false)
+  }, []);
 
   useEffect(() => {
-    setFulfilled([...wishes]
-      .filter(w => w.status === Fill.FULFILED))
+    setFulfilled([...wishes].filter((w) => w.status === Fill.FULFILED));
   }, [visible, wishes]);
 
   useEffect(() => {
-    setUnFulfilled([...wishes]
-      .filter(w => w.status === Fill.UNFULFILED))
+    setUnFulfilled([...wishes].filter((w) => w.status === Fill.UNFULFILED));
   }, [visible, wishes]);
 
   const filterFullFill = () => setVisible(fulfilled);
   const filterUnFUllFill = () => setVisible(unFulfilled);
-
 
   const filteredByRegion = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVisible([
@@ -55,27 +54,25 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
     ]);
   };
 
-
   const handleToGo = () => {
     setVisible([...wishes].filter((w) => w.dream_type === "to-go"));
     setShowType(!showType);
     console.log(visible);
-    
   };
 
   const handleToMeet = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === 'to-meet'));
-    setShowType(!showType)
+    setVisible([...wishes].filter((w) => w.dream_type === "to-meet"));
+    setShowType(!showType);
   };
 
   const handleToBe = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === 'to-be'));
-    setShowType(!showType)
+    setVisible([...wishes].filter((w) => w.dream_type === "to-be"));
+    setShowType(!showType);
   };
 
   const handleToHave = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === 'to-have'));
-    setShowType(!showType)
+    setVisible([...wishes].filter((w) => w.dream_type === "to-have"));
+    setShowType(!showType);
   };
 
   const handleBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,41 +82,43 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
 
   const handleShow = () => setShow(true);
 
-
   return (
     <div className="wishes">
-      <div className="container">
+      <div className="wrapper">
         <h2 className="wishes__title">Wishes</h2>
       </div>
 
-      <div className="wishes__sort">
-        <div className="container">
-          <div className="wishes__sort--inner">
-            <div className="wishes__sort--item" onClick={filterUnFUllFill}>
-              <h4 className="wishes__sort--item-title">Unfulfilled </h4>
-              <span className="wishes__sort--item-count">
-                {unFulfilled.length}
-              </span>
-            </div>
-            <div className="wishes__sort--item" onClick={filterFullFill}>
-              <h4 className="wishes__sort--item-title">Fulfilled </h4>
-              <span className="wishes__sort--item-count">
-                {fulfilled.length}
-              </span>
-            </div>
-            <div
-              className="wishes__sort--item"
-              onClick={() => setVisible([...wishes])}
-            >
-              <h4 className="wishes__sort--item-title">All</h4>
-              <span className="wishes__sort--item-count">{wishes.length}</span>
+      <div className="wrapper">
+        <div className="wishes__sort">
+          <div className="wrapper">
+            <div className="wishes__sort--inner">
+              <div className="wishes__sort--item" onClick={filterUnFUllFill}>
+                <h4 className="wishes__sort--item-title">Unfulfilled </h4>
+                <span className="wishes__sort--item-count">
+                  {unFulfilled.length}
+                </span>
+              </div>
+              <div className="wishes__sort--item" onClick={filterFullFill}>
+                <h4 className="wishes__sort--item-title">Fulfilled </h4>
+                <span className="wishes__sort--item-count">
+                  {fulfilled.length}
+                </span>
+              </div>
+              <div
+                className="wishes__sort--item"
+                onClick={() => setVisible([...wishes])}
+              >
+                <h4 className="wishes__sort--item-title">All</h4>
+                <span className="wishes__sort--item-count">
+                  {wishes.length}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="wishes__filter">
-        <div className="container">
+      <div className="wrapper">
+        <div className="wishes__filter">
           <div className="wishes__filter--inner">
             <div className="wishes__filter--item">
               <div
@@ -216,6 +215,7 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
                 min={1}
                 max={100000}
                 onChange={handleBudget}
+                className="wishes__filter--item-range"
               />
               <div className="wishes__filter--item-budbot">
                 <div className="wishes__filter--item-minmax">{`${min}-`}</div>-
@@ -226,34 +226,39 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible}) => {
         </div>
       </div>
 
-      <div className="wishes__cards cards">
-        {loading && <Loader />}
-        {!loading &&
-          visible.length > 0 &&
-          visible.map((wish) => (
-            <div className="wishes__card" key={wish.id}>
-              <img className="wishes__card--img" src={wish.attachment} />
-              <h4 className="wishes__card--title">{wish.title}</h4>
-              <ul className="wishes__card--desc">
-                <li className="wishes__card--desc-item">{wish.city}</li>
-                <li className="wishes__card--desc-item">{wish.user_age}</li>
-              </ul>
+      <div className="wrapper">
+        <div className="wishes__cards">
+          {loading && <Loader />}
+          {!loading &&
+            visible.length > 0 &&
+            visible.map((wish) => (
+              <div className="wishes__card" key={wish.id}>
+                <img className="wishes__card--img" src={wish.attachment} />
+                <h4 className="wishes__card--title">{wish.title}</h4>
+                <ul className="wishes__card--desc">
+                  <li className="wishes__card--desc-item">{wish.city}</li>
+                  <li className="wishes__card--desc-item">{wish.user_age}</li>
+                </ul>
 
-              {wish.is_activated && (
-                <div className="wishes__card--reserve">Reserved for embody</div>
-              )}
+                {wish.is_activated && (
+                  <div className="wishes__card--reserve">
+                    Reserved for embody
+                  </div>
+                )}
 
-              <button className="wishes__card--btn" onClick={handleShow}>
-                Embody
-              </button>
-            </div>
-          ))}
+                <button className="wishes__card--btn" onClick={handleShow}>
+                  Embody
+                </button>
+              </div>
+            ))}
 
-        {!loading && visible.length === 0 && (
-          <p className="wishes__error">There are no wishes yet</p>
-        )}
+          {!loading && visible.length === 0 && (
+            <p className="wishes__error">There are no wishes yet</p>
+          )}
+        </div>
       </div>
+
       <ModalForm setShow={setShow} show={show} />
     </div>
   );
-}
+};
