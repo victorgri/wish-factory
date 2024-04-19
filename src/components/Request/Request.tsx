@@ -84,6 +84,12 @@ export const Request: React.FC<Props> = ({wishes}) => {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(newWish),
+    }).then((res) => {
+      if (!res.ok) {
+        alert('Woops! something wrong...')
+      } else {
+        alert('Your request is succesfully register!')
+      }
     });
   };
 
@@ -136,7 +142,7 @@ export const Request: React.FC<Props> = ({wishes}) => {
           <span className="request__form--item-title">
             Your name and surname
           </span>
-          <input type="text" className="request__form--item-input" />
+          <input type="text" className="request__form--item-input" required/>
         </div>
         <div className="request__form--item">
           <span className="request__form--item-title">Contact number</span>
@@ -156,6 +162,7 @@ export const Request: React.FC<Props> = ({wishes}) => {
             className="request__form--item-input"
             placeholder="example@site.com"
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
 
@@ -182,11 +189,11 @@ export const Request: React.FC<Props> = ({wishes}) => {
         </div>
         <div className="request__form--item">
           <span className="request__form--item-title">Sex</span>
-          <label className="request__form--item-radio" htmlFor="button">
+          <label className="request__form--item-radio">
             <input type="radio" />
             Male
           </label>
-          <label htmlFor="button" className="request__form--item-radio">
+          <label className="request__form--item-radio">
             <input type="radio" />
             Female
           </label>

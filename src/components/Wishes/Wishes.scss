@@ -3,8 +3,9 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 150px;
+
   &__title {
-    color:#212529;
+    color: #212529;
     font-family: e-Ukraine;
     font-size: 60px;
     font-style: normal;
@@ -21,7 +22,7 @@
   }
 
   &__sort {
-    
+
     margin-bottom: 32px;
 
     &--inner {
@@ -31,7 +32,9 @@
 
     &--item {
       cursor: pointer;
-      &-title {display: inline;
+
+      &-title {
+        display: inline;
         font-family: e-Ukraine;
         font-size: 24px;
         line-height: 36px;
@@ -50,108 +53,112 @@
   }
 
   &__filter {
-    margin-bottom: 120px;
-    
+    margin-bottom: 60px;
+
     height: 110px;
 
     &--inner {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      align-items: center;
+      position: relative;
     }
 
     &--item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 260px;
-      &-reg {
-        width: 260px;
-        font-family: e-Ukraine;
-        font-weight: 300;
-        font-size: 16px;
-        line-height: 24px;
-        color: #5D6469;
-        border: none;
-        border-bottom: 1px solid #343A40;
-      }
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #5D6469;
+      font-family: e-Ukraine;
+      color: #5D6469;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &--reg {
+      border-bottom: 1px solid #5D6469;
+      position: relative;
 
       &-top {
-        width: 318px;
         display: flex;
-        gap: 30px;
-        cursor: pointer;
+        justify-content: space-between;
+      }
+
+      &-img {
+        width: 19px;
+        margin: 0;
+        padding: 0;
       }
 
       &-title {
+        margin: 0;
+        padding: 0;
         font-family: e-Ukraine;
-        font-weight: 300;
+        color: #5D6469;
         font-size: 16px;
         line-height: 24px;
+      }
+
+      &-input {
+        position: absolute;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #5D6469;
+        font-family: e-Ukraine;
         color: #5D6469;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    &--budget {
+      position: absolute;
+      right: 0;
+      top: 1px;
+      width: 250px;
+
+      &-title {
+        font-family: e-Ukraine;
+        color: #5D6469;
+        font-size: 16px;
+        line-height: 24px;
       }
 
       &-range {
-        width: 302px;
-        height: 2px;
-        border: 1px solid #ADB5BD;
-        border-radius: 4px;
-        margin: 16px 0;
-        outline: none;
+        width: 100%;
       }
 
-      &-bottom {
-        margin-top: 20px;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
+      &-boxes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-        align-items: center;
-        font-family: e-Ukraine;
-        font-size: 14px;
-        color: #5D6469;
-      }
-
-      &-opt {
-        cursor: pointer;
-        font-family: e-Ukraine;
-        font-size: 14px;
-        color: #5D6469;
-        margin-top: 20px;
-      }
-
-      &-budbot {
-        display: flex;
-        gap: 6px;
-        align-items: center;
       }
 
       &-minmax {
-        width: 147px;
-        padding: 10px 0;
-        border: 1px solid #CED4DA;
+        border: 1px solid #5D6469;
         font-family: e-Ukraine;
-        font-weight: 300;
+        color: #5D6469;
         font-size: 16px;
         line-height: 24px;
-        text-align: center;
-        color: #5D6469;
       }
     }
-    }
+  }
+
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
+
   &__card {
     position: relative;
     width: 260px;
     display: flex;
     flex-direction: column;
-    // align-items: center;
     gap: 24px;
     height: 574px;
-
+    border: 1px solid #CED4DA;
+    border-radius: 40px;
 
     &--img {
       width: 100%;
@@ -160,22 +167,24 @@
     }
 
     &--title {
-      color:#212529;
+      color: #212529;
       font-family: e-Ukraine;
       font-size: 24px;
       font-style: normal;
       font-weight: 400;
       line-height: 150%;
+      padding: 0 24px 0;
     }
 
     &--desc {
       display: flex;
       flex-direction: column;
       gap: 6px;
+      padding: 0 45px 0;
 
       &-item {
         list-style: disc;
-        color:#343A40;
+        color: #343A40;
         font-family: e-Ukraine;
         font-size: 16px;
         font-style: normal;
@@ -188,7 +197,7 @@
       text-decoration: none;
       position: absolute;
       bottom: 24px;
-      color:#FFF;
+      color: #FFF;
       text-align: center;
       font-family: e-Ukraine;
       font-size: 16px;
@@ -198,11 +207,18 @@
       padding: 15px 0 16px;
       border-radius: 100px;
       background-color: #4e1ff4;
-      width: 100%;
+      width: 90%;
+      border: none;
+      transition-duration: .5s;
+      margin-left: 5%;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     &--reserve {
-      color:#343A40;
+      color: #343A40;
       font-family: e-Ukraine;
       font-size: 14px;
       font-style: normal;

@@ -15,12 +15,9 @@ type Props = {
 
 export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible }) => {
   const [show, setShow] = useState(false);
-  const [showType, setShowType] = useState(false);
   const [showRegion, setShowRegion] = useState(false);
-  const [showCurrency, setShowCurrency] = useState(false);
   const [fulfilled, setFulfilled] = useState<Wish[]>([]);
   const [unFulfilled, setUnFulfilled] = useState<Wish[]>([]);
-  const [currency, setCurrency] = useState("");
   const [min, setMin] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -54,25 +51,18 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible }) => {
     ]);
   };
 
-  const handleToGo = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === "to-go"));
-    setShowType(!showType);
-    console.log(visible);
+  const filteredByTypeWishes = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    return [...wishes].filter((w) => w.dream_type === e.target.value.toLowerCase());
   };
 
-  const handleToMeet = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === "to-meet"));
-    setShowType(!showType);
-  };
-
-  const handleToBe = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === "to-be"));
-    setShowType(!showType);
-  };
-
-  const handleToHave = () => {
-    setVisible([...wishes].filter((w) => w.dream_type === "to-have"));
-    setShowType(!showType);
+  const filteredByCurrencyWishes = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    return [...wishes].filter(
+      (w) => w.currency === e.target.value
+    );
   };
 
   const handleBudget = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,106 +110,74 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible }) => {
       <div className="wrapper">
         <div className="wishes__filter">
           <div className="wishes__filter--inner">
-            <div className="wishes__filter--item">
-              <div
-                className="wishes__filter--item-top"
-                onClick={() => setShowType(!showType)}
-              >
-                <span className="wishes__filter--item-title">Dream type</span>
-                <img src="./img/arrowdown.svg" alt="arrowdown" />
-              </div>
+            <select
+              className="wishes__filter--item"
+              name="dreamType"
+              id="dreamType"
+              onChange={(e) => {
+                setVisible(filteredByTypeWishes(e));
+                console.log(visible);
+              }}
+            >
+              <option selected disabled>
+                Dream type
+              </option>
+              <option value="TO-GO">TO-GO</option>
+              <option value="TO-MEET">TO-MEET</option>
+              <option value="TO-BE">TO-BE</option>
+              <option value="TO-HAVE">TO-HAVE</option>
+            </select>
 
-              {showType ? (
-                <div className="wishes__filter--item-bottom">
-                  <p className="wishes__filter--item-opt" onClick={handleToGo}>
-                    TO_GO
-                  </p>
-                  <p
-                    className="wishes__filter--item-opt"
-                    onClick={handleToMeet}
-                  >
-                    TO_MEET
-                  </p>
-                  <p className="wishes__filter--item-opt" onClick={handleToBe}>
-                    TO_BE
-                  </p>
-                  <p
-                    className="wishes__filter--item-opt"
-                    onClick={handleToHave}
-                  >
-                    TO_HAVE
-                  </p>
-                </div>
-              ) : null}
-            </div>
-            <div className="wishes__filter--item">
+            <div className="wishes__filter--reg">
               <div
-                className="wishes__filter--item-top"
+                className="wishes__filter--reg-top"
                 onClick={() => setShowRegion(!showRegion)}
               >
-                <span className="wishes__filter--item-title">Region</span>
-                <img src="./img/arrowdown.svg" alt="arrowdown" />
+                <span className="wishes__filter--reg-title">Region</span>
+                <img
+                  src="./img/arrowdown.svg"
+                  alt="arrowdown"
+                  className="wishes__filter--reg-img"
+                />
               </div>
               {showRegion && (
                 <input
-                  className="wishes__filter--item-reg"
+                  className="wishes__filter--reg-input"
                   type="text"
                   placeholder="Start typing to find city"
                   onChange={(e) => filteredByRegion(e)}
                 />
               )}
             </div>
-            <div className="wishes__filter--item">
-              <div
-                className="wishes__filter--item-top"
-                onClick={() => setShowCurrency(!showCurrency)}
-              >
-                <span className="wishes__filter--item-title">Currency</span>
-                <img src="./img/arrowdown.svg" alt="arrowdown" />
-              </div>
-              {showCurrency && (
-                <div className="wishes__filter--item-currency">
-                  <div
-                    className="wishes__filter--item-opt"
-                    onClick={() => {
-                      setCurrency("UAH");
-                      setVisible(
-                        [...wishes].filter((w) => w.currency === currency)
-                      );
-                      setShowCurrency(!showCurrency);
-                    }}
-                  >
-                    UAH
-                  </div>
-                  <div
-                    className="wishes__filter--item-opt"
-                    onClick={() => {
-                      setCurrency("USD");
-                      setVisible(
-                        [...wishes].filter((w) => w.currency === currency)
-                      );
-                      setShowCurrency(!showCurrency);
-                    }}
-                  >
-                    USD
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="wishes__filter--item wishes__filter--item-budget">
-              <div className="wishes__filter--item-top">
-                <span className="wishes__filter--item-title">Budget</span>
-              </div>
+
+            <select
+              className="wishes__filter--item"
+              name="currency"
+              id="currency"
+              onChange={(e) => {
+                setVisible(filteredByCurrencyWishes(e));
+                console.log(visible);
+              }}
+            >
+              <option selected disabled>
+                Currency
+              </option>
+              <option value="UAH">UAH</option>
+              <option value="USD">USD</option>
+            </select>
+
+            <div className="wishes__filter--budget">
+              <h3 className="wishes__filter--budget-title">Budget</h3>
               <input
                 type="range"
                 min={1}
                 max={100000}
                 onChange={handleBudget}
-                className="wishes__filter--item-range"
+                className="wishes__filter--budget-range"
               />
-              <div className="wishes__filter--item-budbot">
-                <div className="wishes__filter--item-minmax">{`${min}-`}</div>-
-                <div className="wishes__filter--item-minmax">{"100000-"}</div>
+              <div className="wishes__filter--budget-boxes">
+                <div className="wishes__filter--budget-minmax">{`${min}`}</div>
+                <div className="wishes__filter--budget-minmax">{"100000"}</div>
               </div>
             </div>
           </div>
@@ -227,35 +185,38 @@ export const Wishes: React.FC<Props> = ({ wishes, visible, setVisible }) => {
       </div>
 
       <div className="wrapper">
-        <div className="wishes__cards">
-          {loading && <Loader />}
-          {!loading &&
-            visible.length > 0 &&
-            visible.map((wish) => (
-              <div className="wishes__card" key={wish.id}>
-                <img className="wishes__card--img" src={wish.attachment} />
-                <h4 className="wishes__card--title">{wish.title}</h4>
-                <ul className="wishes__card--desc">
-                  <li className="wishes__card--desc-item">{wish.city}</li>
-                  <li className="wishes__card--desc-item">{wish.user_age}</li>
-                </ul>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="wishes__cards">
+            {!loading &&
+              visible.length > 0 &&
+              visible.map((wish) => (
+                <div className="wishes__card" key={wish.id}>
+                  <img className="wishes__card--img" src={wish.attachment} />
+                  <h4 className="wishes__card--title">{wish.title}</h4>
+                  <ul className="wishes__card--desc">
+                    <li className="wishes__card--desc-item">{wish.city}</li>
+                    <li className="wishes__card--desc-item">{wish.user_age}</li>
+                  </ul>
 
-                {wish.is_activated && (
-                  <div className="wishes__card--reserve">
-                    Reserved for embody
-                  </div>
-                )}
+                  {wish.is_activated && (
+                    <div className="wishes__card--reserve">
+                      Reserved for embody
+                    </div>
+                  )}
 
-                <button className="wishes__card--btn" onClick={handleShow}>
-                  Embody
-                </button>
-              </div>
-            ))}
+                  <button className="wishes__card--btn" onClick={handleShow}>
+                    Embody
+                  </button>
+                </div>
+              ))}
 
-          {!loading && visible.length === 0 && (
-            <p className="wishes__error">There are no wishes yet</p>
-          )}
-        </div>
+            {!loading && visible.length === 0 && (
+              <p className="wishes__error">There are no wishes yet</p>
+            )}
+          </div>
+        )}
       </div>
 
       <ModalForm setShow={setShow} show={show} />

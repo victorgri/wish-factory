@@ -10,3 +10,18 @@
 @import './blocks/donations.scss';
 @import './blocks/questions.scss';
 @import './blocks/about.scss';
+
+
+.wishes {
+  &__filter {
+    &--item {
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #5D6469;
+      font-family: e-Ukraine;
+      color: #5D6469;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}
