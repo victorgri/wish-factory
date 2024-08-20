@@ -4,9 +4,10 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
+  padding-inline: 24px;
 
   &__title {
-    color:#212529;
+    color: #212529;
     text-align: center;
 
     font-family: e-Ukraine;
@@ -18,7 +19,7 @@
 
   &__desc {
     width: 550px;
-    color:#5D6469;
+    color: #5D6469;
     text-align: center;
 
     font-family: e-Ukraine;
@@ -29,16 +30,29 @@
   }
 
   &__cards {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     padding-bottom: 40px;
+    width: 100%;
   }
 
   &__card {
+    position: relative;
+    border-radius: 40px;
+    height: 450px;
+
+    &--img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 40px 40px 0 0;
+    }
+
     &--title {
-      width: 356px;
-      color:#212529;
+      width: 100%;
+      color: #212529;
       font-family: e-Ukraine;
       font-size: 24px;
       font-style: normal;
@@ -50,18 +64,24 @@
       width: 356px;
       display: flex;
       align-items: center;
-      color:#5D6469;
+      color: #5D6469;
       font-family: e-Ukraine;
       font-size: 16px;
       font-style: normal;
       font-weight: 300;
       line-height: 150%;
     }
+
+    &--button {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
   }
 
   &__button {
     text-decoration: none;
-    color:#FFF;
+    color: #FFF;
     text-align: center;
     font-family: e-Ukraine;
     font-size: 16px;
@@ -80,11 +100,22 @@
   }
 }
 
-.carousel .carousel-indicators button{
+.carousel {
+  position: relative;
+  height: 500px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-125%);
+}
+
+.carousel .carousel-indicators button {
+
   width: 16px;
   height: 16px;
   border-radius: 50%;
+
 }
-
-
-

@@ -142,7 +142,7 @@ export const Request: React.FC<Props> = ({wishes}) => {
           <span className="request__form--item-title">
             Your name and surname
           </span>
-          <input type="text" className="request__form--item-input" required/>
+          <input type="text" className="request__form--item-input" required />
         </div>
         <div className="request__form--item">
           <span className="request__form--item-title">Contact number</span>
@@ -249,7 +249,7 @@ export const Request: React.FC<Props> = ({wishes}) => {
               if (!event.target.files) {
                 return;
               }
-              onChange(event.target.files[0])
+              onChange(event.target.files[0]);
             }}
           />
         </label>

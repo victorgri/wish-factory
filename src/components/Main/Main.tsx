@@ -1,10 +1,15 @@
-import { Carousel } from "react-bootstrap";
+import { Carousel, CarouselItem } from "react-bootstrap";
 import { FqA } from "../FqA/FqA";
 import "./Main.scss";
 import '../../styles/blocks/container.scss'
 import { Link } from "react-router-dom";
+import { Wish } from "../../types/Wish";
 
-export const Main = () => {
+type Props = {
+  wishes: Wish[];
+}
+
+export const Main: React.FC<Props> = ({wishes}) => {
   return (
     <div className="main">
       <section className="top">
@@ -183,7 +188,67 @@ export const Main = () => {
           us grant more wishes!
         </p>
         <Carousel variant="dark" className="wait__carousel">
-          <Carousel.Item>
+          <CarouselItem>
+            <div className="wait__cards">
+              {wishes.slice(0, 3).map((wish) => (
+                <div className="wait__card">
+                  <img
+                    className="wait__card--img"
+                    src={wish.attachment}
+                    alt={wish.title}
+                  />
+                  <h2 className="wait__card--title">{wish.title}</h2>
+                  <p className="wait__card--text">
+                    <a href="/" className="wait__card--button">
+                      Read
+                      <img src="./img/arrowup.svg" alt="" />
+                    </a>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="wait__cards">
+              {wishes.slice(4, 7).map((wish) => (
+                <div className="wait__card">
+                  <img
+                    className="wait__card--img"
+                    src={wish.attachment}
+                    alt={wish.title}
+                  />
+                  <h2 className="wait__card--title">{wish.title}</h2>
+                  <p className="wait__card--text">
+                    <a href="/" className="wait__card--button">
+                      Read
+                      <img src="./img/arrowup.svg" alt="" />
+                    </a>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="wait__cards">
+              {wishes.slice(8, 11).map((wish) => (
+                <div className="wait__card">
+                  <img
+                    className="wait__card--img"
+                    src={wish.attachment}
+                    alt={wish.title}
+                  />
+                  <h2 className="wait__card--title">{wish.title}</h2>
+                  <p className="wait__card--text">
+                    <a href="/" className="wait__card--button">
+                      Read
+                      <img src="./img/arrowup.svg" alt="" />
+                    </a>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </CarouselItem>
+          {/* <Carousel.Item>
             <div className="wait__cards">
               <div className="wait__card">
                 <img src="./img/main cards/Wish.jpg" alt="card1" />
@@ -311,7 +376,7 @@ export const Main = () => {
                 </p>
               </div>
             </div>
-          </Carousel.Item>
+          </Carousel.Item> */}
         </Carousel>
 
         <Link to="/wishes" className="wait__button">
