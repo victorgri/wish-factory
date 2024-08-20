@@ -35,7 +35,7 @@ function App() {
     <div className="app">
       <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main wishes={wishes} />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/wishes"
